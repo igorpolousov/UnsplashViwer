@@ -1,4 +1,5 @@
 # Unsplash photo viewer with Realm Storage
+!! Download Project. Open terminal. Choose project folder. run Podfile install. !! 
 
 Приложение с двумя вкладками TabBar. 
 
