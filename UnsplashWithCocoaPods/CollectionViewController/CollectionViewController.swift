@@ -17,7 +17,7 @@ class CollectionViewController: UIViewController  {
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchResultsUpdater = self
+        //searchController.searchResultsUpdater = self
         navigationController?.navigationBar.tintColor = .systemRed
         createCollectionView()
         APISession.shared.fetchData(query: "trees", view: collectionView)
@@ -91,17 +91,14 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
 }
 
 
-extension CollectionViewController: UISearchResultsUpdating, UISearchBarDelegate {
+extension CollectionViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchController.searchBar.resignFirstResponder()
-        updateSearchResults(for: searchController)
-        collectionView.reloadData()
+        guard let text = searchBar.text else {return}
+        APISession.shared.resultsLoadedImages = []
+        APISession.shared.fetchData(query: text, view: collectionView)
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {return}
-        APISession.shared.fetchData(query: text)
-    }
 }
 

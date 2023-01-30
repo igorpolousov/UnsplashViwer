@@ -11,7 +11,6 @@ class DataToLikedImages {
     static var dataToLikedImages: [ImageDataFromRealm] = []
 }
 
-
 struct ImageDataFromRealm {
     var id: String
     var name: String
